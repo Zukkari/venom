@@ -27,9 +27,9 @@ class FileSystemLoader(private val agentClass: Class<*>) : Loader {
     }
 
 
-    private fun path(): String {
+    internal fun path(): String {
         val pkg = agentClass.`package`.name
-        val name = "${agentClass.name}.class"
+        val name = "${agentClass.simpleName}.class"
 
         val folderPath = pkg.replace(".", File.separator)
 
