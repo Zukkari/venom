@@ -3,7 +3,13 @@ package com.github.zukkari.injection
 class AgentConfiguration<T>(val agentClass: Class<T>) {
     var canRedefineClasses: Boolean = false
     var canRetransformClasses: Boolean = false
-    var canSetNativeMehtodPrefix: Boolean = false
+    var canSetNativeMethodPrefix: Boolean = false
 
-    inline fun <reified T> new(): AgentConfiguration<T> = AgentConfiguration(T::class.java)
+    companion object {
+        inline fun <reified T> new(configurator: AgentConfiguration<T>.() -> Unit): AgentConfiguration<T> {
+            val cfg = AgentConfiguration(T::class.java)
+            configurator(cfg)
+            return cfg
+        }
+    }
 }

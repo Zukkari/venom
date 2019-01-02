@@ -6,5 +6,5 @@ import com.github.zukkari.serialization.manifest.ManifestField
 object CanSetNativeMethodPrefix : ManifestField {
     override val name: String = "Can-Set-Native-Method-Prefix"
 
-    override fun value(configuration: AgentConfiguration<*>): String = configuration.canSetNativeMehtodPrefix.toString()
+    override fun value(configuration: AgentConfiguration<*>): String = configuration.canSetNativeMethodPrefix.toString()
 }
