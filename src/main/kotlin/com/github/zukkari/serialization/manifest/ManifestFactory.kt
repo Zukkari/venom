@@ -8,9 +8,17 @@ import com.github.zukkari.serialization.manifest.fields.CanSetNativeMethodPrefix
 import java.util.jar.Attributes
 import java.util.jar.Manifest
 
-class ManifestCreator(private val config: AgentConfiguration<*>) {
+object ManifestFactory {
+    private const val MANIFEST_VERSION: String = "1.0"
 
-    fun create(): Manifest {
+    private val manifestFields: List<ManifestField> = listOf(
+        AgentClass,
+        CanRedefineClass,
+        CanRetransformClasses,
+        CanSetNativeMethodPrefix
+    )
+
+    fun create(config: AgentConfiguration<*>): Manifest {
         val manifest = Manifest()
         manifest.mainAttributes[Attributes.Name.MANIFEST_VERSION] = MANIFEST_VERSION
 
@@ -21,14 +29,4 @@ class ManifestCreator(private val config: AgentConfiguration<*>) {
         return manifest
     }
 
-    companion object {
-        const val MANIFEST_VERSION: String = "1.0"
-
-        val manifestFields: List<ManifestField> = listOf(
-            AgentClass,
-            CanRedefineClass,
-            CanRetransformClasses,
-            CanSetNativeMethodPrefix
-        )
-    }
 }
