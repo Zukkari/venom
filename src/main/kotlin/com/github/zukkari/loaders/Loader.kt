@@ -7,7 +7,7 @@ interface Loader {
     fun load(): Either<LoadException, InputStream>
 }
 
-sealed class LoadException {
+sealed class LoadException : Exception() {
     object ResourceNotFound : LoadException()
 }
 

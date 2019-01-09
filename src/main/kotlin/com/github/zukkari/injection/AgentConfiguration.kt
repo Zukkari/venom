@@ -11,5 +11,7 @@ class AgentConfiguration<T>(val agentClass: Class<T>) {
             configurator(cfg)
             return cfg
         }
+
+        inline fun <reified T> new(): AgentConfiguration<T> = AgentConfiguration(T::class.java)
     }
 }
