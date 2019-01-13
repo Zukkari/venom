@@ -3,6 +3,7 @@ package com.github.zukkari
 import arrow.core.*
 import arrow.instances.either.monad.monad
 import com.github.zukkari.injection.AgentConfiguration
+import com.github.zukkari.injection.DeletionHook
 import com.github.zukkari.injection.VM
 import com.github.zukkari.serialization.manifest.ManifestFactory
 import com.github.zukkari.serialization.writer.JarWriter
@@ -26,7 +27,10 @@ object Venom {
             val attach = VM.attach(jarPath = jarName)
 
             when (attach) {
-                is Success<*> -> Right(Unit)
+                is Success<*> -> {
+                    DeletionHook(jarName).attach()
+                    Right(Unit)
+                }
                 is Failure -> Left(attach.exception)
             }.bind()
         }.fix()

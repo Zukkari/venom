@@ -51,6 +51,9 @@ class JarWriter(
             jarOutputStream.write(buffer, 0, read)
             read = classInputStream.read(buffer)
         }
+
+        jarOutputStream.closeEntry()
+        jarOutputStream.close()
     }
 
 

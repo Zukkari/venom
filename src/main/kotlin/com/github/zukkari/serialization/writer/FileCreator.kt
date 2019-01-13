@@ -13,7 +13,7 @@ object FileCreator {
 
         return when {
             file.exists() -> Left(ExistsException(name))
-            !file.canWrite() -> Left(NoWriteAccess)
+            file.exists() && !file.canWrite() -> Left(NoWriteAccess)
             else -> Right(file)
         }
     }
