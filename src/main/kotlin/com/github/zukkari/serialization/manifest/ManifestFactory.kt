@@ -23,7 +23,7 @@ object ManifestFactory {
         manifest.mainAttributes[Attributes.Name.MANIFEST_VERSION] = MANIFEST_VERSION
 
         manifestFields.forEach { field ->
-            manifest.mainAttributes[field.name] = field.value(config)
+            manifest.mainAttributes.putValue(field.name, field.value(config))
         }
 
         return manifest
