@@ -12,8 +12,6 @@ This tool does:
 - [x] Attaches it to the JVM
 - [x] Schedules shutdown hook to delete the `.jar` after before JVM shutdown.
 
-___
-
 ## Usage examples:
 
 ```kotlin
