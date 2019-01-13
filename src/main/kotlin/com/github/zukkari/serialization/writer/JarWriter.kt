@@ -18,7 +18,7 @@ class JarWriter(
     private val manifest: Manifest
 ) {
 
-    fun write(): Either<Throwable, Unit> {
+    fun write(): Either<Throwable, String> {
         return Either.monad<Throwable>()
             .binding {
                 val classInputStream = FileSystemLoader(configuration.agentClass).load().bind()
@@ -26,6 +26,8 @@ class JarWriter(
                 val jarStream = jarStream(outFile)
 
                 writeJar(jarStream, classInputStream)
+
+                Either.Right(outFile.absolutePath).bind()
             }.fix()
     }
 
