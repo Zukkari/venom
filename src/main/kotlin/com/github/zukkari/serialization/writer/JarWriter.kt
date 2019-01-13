@@ -4,6 +4,7 @@ import arrow.core.Either
 import arrow.core.fix
 import arrow.instances.either.monad.monad
 import com.github.zukkari.injection.AgentConfiguration
+import com.github.zukkari.injection.DeletionHook
 import com.github.zukkari.loaders.implementation.FileSystemLoader
 import com.github.zukkari.serialization.PathFormer
 import java.io.File
@@ -27,6 +28,7 @@ class JarWriter(
 
                 writeJar(jarStream, classInputStream)
 
+                DeletionHook(outFile.absolutePath).attach()
                 Either.Right(outFile.absolutePath).bind()
             }.fix()
     }

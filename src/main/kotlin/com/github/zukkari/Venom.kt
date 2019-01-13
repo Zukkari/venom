@@ -27,10 +27,7 @@ object Venom {
             val attach = VM.attach(jarPath = jarName)
 
             when (attach) {
-                is Success<*> -> {
-                    DeletionHook(jarName).attach()
-                    Right(Unit)
-                }
+                is Success<*> -> Right(Unit)
                 is Failure -> Left(attach.exception)
             }.bind()
         }.fix()
