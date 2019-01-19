@@ -3,7 +3,7 @@ package com.github.zukkari.serialization.manifest
 import com.github.zukkari.injection.AgentConfiguration
 import com.github.zukkari.serialization.manifest.fields.AgentClass
 import com.github.zukkari.serialization.manifest.fields.CanRedefineClass
-import com.github.zukkari.serialization.manifest.fields.CanRetransformClasses
+import com.github.zukkari.serialization.manifest.fields.CanReTransformClasses
 import com.github.zukkari.serialization.manifest.fields.CanSetNativeMethodPrefix
 import java.util.jar.Attributes
 import java.util.jar.Manifest
@@ -14,7 +14,7 @@ object ManifestFactory {
     private val manifestFields: List<ManifestField> = listOf(
         AgentClass,
         CanRedefineClass,
-        CanRetransformClasses,
+        CanReTransformClasses,
         CanSetNativeMethodPrefix
     )
 

@@ -1,10 +1,9 @@
 package com.github.zukkari.serialization.writer
 
 import arrow.core.Either
-import arrow.core.Left
-import arrow.core.Right
+import arrow.core.left
+import arrow.core.right
 import java.io.File
-import java.lang.Exception
 
 object FileCreator {
 
@@ -12,9 +11,9 @@ object FileCreator {
         val file = File(name)
 
         return when {
-            file.exists() -> Left(ExistsException(name))
-            file.exists() && !file.canWrite() -> Left(NoWriteAccess)
-            else -> Right(file)
+            file.exists() -> ExistsException(name).left()
+            file.exists() && !file.canWrite() -> NoWriteAccess.left()
+            else -> file.right()
         }
     }
 }

@@ -21,10 +21,7 @@ class FileSystemLoader(private val agentClass: Class<*>) : Loader {
             }.fix()
 
 
-        return when (f) {
-            is Some -> Right(f.t)
-            is None -> Left(ResourceNotFound)
-        }
+        return f.toEither { ResourceNotFound }
     }
 
 }

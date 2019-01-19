@@ -24,12 +24,7 @@ object Venom {
 
         return Either.monad<Throwable>().binding {
             val jarName = writer.write().bind()
-            val attach = VM.attach(jarPath = jarName)
-
-            when (attach) {
-                is Success<*> -> Right(Unit)
-                is Failure -> Left(attach.exception)
-            }.bind()
+            VM.attach(jarPath = jarName).bind()
         }.fix()
     }
 }

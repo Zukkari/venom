@@ -29,7 +29,7 @@ class JarWriter(
                 writeJar(jarStream, classInputStream)
 
                 DeletionHook(outFile.absolutePath).attach()
-                Either.Right(outFile.absolutePath).bind()
+                outFile.absolutePath
             }.fix()
     }
 
