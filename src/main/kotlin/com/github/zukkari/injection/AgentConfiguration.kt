@@ -9,5 +9,16 @@ class AgentConfiguration<T>(
 
     companion object {
         inline fun <reified T> new(): AgentConfiguration<T> = AgentConfiguration(T::class.java)
+
+        inline fun <reified T> new(
+            canRedefineClasses: Boolean = false,
+            canReTransformClasses: Boolean = false,
+            canSetNativeMethodPrefix: Boolean = false
+        ): AgentConfiguration<T> = AgentConfiguration(
+            T::class.java,
+            canRedefineClasses = canRedefineClasses,
+            canReTransformClasses = canReTransformClasses,
+            canSetNativeMethodPrefix = canSetNativeMethodPrefix
+        )
     }
 }
