@@ -15,28 +15,23 @@ This tool does:
 ## Usage examples:
 
 ```kotlin
-
 val result = Venom.inject(MyAgent::class.java)
 when (result) {
     is Either.Success -> // Injected successfully
     is Either.Left -> // Injection failed
 }
-
 ```
 
 
 ```kotlin
+val config = AgentConfiguration.new<MyAgent>(
+                canRedefineClasses = false,
+                canReTransformClasses = false,
+                canSetNativeMethodPrefix = false)
 
-val config = AgentConfiguration.new<MyAgent> {
-    canRedifineClasses = true
-    canRetransformClasses = true
-    canSetNativeMethodPrefix = true
+val inject = Venom.inject(config)
+when (inject) {
+    is Either.Left -> // success
+    is Either.Right -> // err
 }
-
-val result = Venom.inject(config)
-when (result) {
-    is Either.Success -> // Injected successfully
-    is Either.Left -> // Injection failed
-}
-
 ```
