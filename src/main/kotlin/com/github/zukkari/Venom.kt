@@ -18,6 +18,8 @@ object Venom {
 
     fun inject(config: AgentConfiguration<*>): Either<Throwable, Unit> = attachWithConfiguration(config)
 
+    fun inject(jar: String): Either<Throwable, Unit> = VM.attach(jar)
+
     fun attachWithConfiguration(config: AgentConfiguration<*>): Either<Throwable, Unit> {
         val manifest = ManifestFactory.create(config)
         val writer = JarWriter(config, manifest)
